@@ -1,210 +1,90 @@
-/* ===== GLOBAL RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* ===== PAGE BACKGROUND ===== */
 body {
-  background-color: #f4f6f8;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
 }
 
-/* ===== HEADER ===== */
 .header {
-  width: 100%;
-  background-color: #2f73e0;
+  background: #2f73e0;
   color: white;
   padding: 16px;
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-/* ===== MAIN CARD (CENTERED) ===== */
-.card {
-  width: 420px;
-  background-color: #ffffff;
-  padding: 24px;
-  margin: 40px auto;          /* ⭐ centers card */
-  border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== TOP BAR (TITLE + LOGOUT) ===== */
-.top-bar {
+.container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  justify-content: center;
+  padding: 30px;
 }
 
-.top-bar h2 {
-  font-size: 18px;
-  font-weight: 600;
+.card {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
-/* ===== INPUTS ===== */
-input,
-textarea,
-select {
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input, textarea, select, button {
   width: 100%;
   padding: 10px;
   margin-bottom: 14px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-textarea {
-  min-height: 90px;
-  resize: none;
-}
-
-/* ===== BUTTONS ===== */
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #2f73e0;
-  border: none;
+  background: #2f73e0;
   color: white;
-  font-size: 15px;
-  border-radius: 4px;
+  border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #245dc2;
+  background: #245bb5;
 }
 
-/* ===== LOGOUT BUTTON ===== */
-.logout {
-  width: auto;
-  padding: 6px 14px;
-  background-color: #ff4d4d;
-  font-size: 13px;
-}
-
-.logout:hover {
-  background-color: #d93636;
-}
-
-/* ===== MESSAGES ===== */
-.success {
-  color: green;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* ===== CAPTCHA ===== */
-.captcha-box {
-  margin: 10px 0;
-  padding: 10px;
+.link {
   text-align: center;
-  letter-spacing: 4px;
-  font-weight: bold;
-  background: repeating-linear-gradient(
-    45deg,
-    #eee,
-    #eee 10px,
-    #ddd 10px,
-    #ddd 20px
-  );
-  user-select: none;
+  color: #2f73e0;
+  cursor: pointer;
 }
 
-/* ===== INFO BOX AFTER SUBMIT ===== */
-.info-box {
-  margin-top: 14px;
-  background-color: #f1f5ff;
-  padding: 10px;
-  border-left: 4px solid #2f73e0;
-  font-size: 14px;
-}
-
-/* ===== ADMIN TABLE ===== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 16px;
 }
 
-th,
-td {
+th, td {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   text-align: center;
 }
 
 th {
-  background-color: #2f73e0;
+  background: #2f73e0;
   color: white;
 }
 
-/* ===== PRIORITY COLORS ===== */
-.high {
-  color: red;
-  font-weight: bold;
-}
-/* ===== ADMIN DASHBOARD (PRO SIZE) ===== */
-.admin-container {
-  width: 90%;
-  max-width: 1000px;
-  background-color: #ffffff;
-  padding: 24px;
-  margin: 40px auto;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
+.status-open { color: orange; font-weight: bold; }
+.status-resolved { color: green; font-weight: bold; }
 
-/* Admin header */
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
+  .header {
+    font-size: 18px;
+  }
 
-.admin-header h2 {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-/* Status dropdown */
-table select {
-  padding: 6px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-/* Rectified status highlight */
-table td {
-  font-size: 14px;
-}
-
-/* Status colors */
-td:contains("Rectified") {
-  color: green;
-  font-weight: bold;
-}
-/* Save button in admin table */
-.save-btn {
-  padding: 6px 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.save-btn:hover {
-  background-color: #218838;
+  .card {
+    padding: 18px;
+  }
 }

@@ -1,27 +1,59 @@
-import "../App.css";
+import { useEffect, useState } from "react";
 
-function MyComplaints() {
-  const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+function Admin() {
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("complaints")) || [];
+    setComplaints(data);
+  }, []);
+
+  const updateStatus = (id, status) => {
+    const updated = complaints.map(c =>
+      c.id === id ? { ...c, status } : c
+    );
+
+    setComplaints(updated);
+    localStorage.setItem("complaints", JSON.stringify(updated));
+  };
 
   return (
-    <div className="card">
-      <h2>My Complaints</h2>
+    <div className="container">
+      <div className="card" style={{ maxWidth: "700px" }}>
+        <h2>Admin Dashboard</h2>
 
-      {complaints.length === 0 ? (
-        <p>No complaints submitted yet.</p>
-      ) : (
-        complaints.map((c) => (
-          <div key={c.id} className="info-box">
-            <p><b>ID:</b> {c.id}</p>
-            <p><b>Category:</b> {c.category}</p>
-            <p><b>Priority:</b> {c.priority}</p>
-            <p><b>Status:</b> {c.status}</p>
-            <p><b>Date:</b> {c.date}</p>
-          </div>
-        ))
-      )}
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {complaints.map(c => (
+              <tr key={c.id}>
+                <td>{c.id}</td>
+                <td>{c.category}</td>
+                <td>{c.priority}</td>
+                <td>{c.status}</td>
+                <td>
+                  <select onChange={e => updateStatus(c.id, e.target.value)}>
+                    <option>Open</option>
+                    <option>Resolved</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+      </div>
     </div>
   );
 }
 
-export default MyComplaints;
+export default Admin;
